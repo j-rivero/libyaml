@@ -3,13 +3,6 @@
 set -e
 
 main() {
-  # Autoconf based in-source build and tests
-  clean
-
-  ./bootstrap
-  ./configure
-  make test-all
-
   # CMake based in-source build and tests
   clean
 
