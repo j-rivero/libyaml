@@ -7,7 +7,7 @@ main() {
   clean
 
   CXXFLAGS="--coverage" cmake -DCMAKE_BUILD_TYPE=Debug .
-  make
+  make VERBOSE=1
   make test
 }
 
