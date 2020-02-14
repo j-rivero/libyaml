@@ -9,8 +9,6 @@ main() {
   CXXFLAGS="--coverage" cmake -DCMAKE_BUILD_TYPE=Debug .
   make
   make test
-
-  clean
 }
 
 clean() {
