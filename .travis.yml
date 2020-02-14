@@ -28,6 +28,8 @@ script: tests/run-all-tests.sh
 
 after_script:
   # Create lcov report
+  - lcov --capture --initial --directory ../src -o app_base.info
+  - lcov --capture --initial --directory ../include -o app_base.info
   - lcov --capture --directory . --output-file coverage.info
   - lcov --remove app_base.info */tests/* --output-file app_base.info
   - lcov --remove coverage.info */tests/* --output-file coverage.info
