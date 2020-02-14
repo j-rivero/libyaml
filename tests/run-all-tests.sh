@@ -8,6 +8,7 @@ main() {
 
   CFLAGS="--coverage -O0" cmake -DCMAKE_BUILD_TYPE=Debug .
   make VERBOSE=1
+  lcov -c -i -d .. -o app_base.info
   make test
   find . -name "*.gcda"
 }

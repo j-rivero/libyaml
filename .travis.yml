@@ -21,14 +21,16 @@ before_install:
     ci_addons travis/install_cmake 3.2.0;
   fi
 
+ # before_script:
+ #  - lcov -c -i -d .. -o app_base.info
+
 script: tests/run-all-tests.sh
 
 after_script:
   # Create lcov report
-  - lcov -c -i -d .. -o app_base.info
-  - lcov --capture --directory . --output-file app_test.info
-  - lcov --remove coverage.info */tests/* --output-file app_test.info
-  - lcov -a app_base.info -a app_test.info -o app_total.info
+  - lcov --capture --directory . --output-file coverage.info
+  - lcov --remove coverage.info */tests/* --output-file coverage.info
+  - lcov -a app_base.info -a coverage.info -o coverage.info
   - lcov --list coverage.info
   # Uploading report to CodeCov
   - bash <(curl -s https://codecov.io/bash) -f coverage.info || echo "Codecov did not collect coverage reports"
