@@ -6,7 +6,7 @@ main() {
   # CMake based in-source build and tests
   clean
 
-  CXXFLAGS="--coverage" cmake -DCMAKE_BUILD_TYPE=Debug .
+  CFLAGS="--coverage -O0" cmake -DCMAKE_BUILD_TYPE=Debug .
   make VERBOSE=1
   make test
   find . -name "*.gcda"
