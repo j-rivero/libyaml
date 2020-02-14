@@ -5,13 +5,6 @@ matrix:
   - os: linux
     compiler: gcc
     sudo: required
-  - os: linux
-    compiler: clang
-    sudo: required
-  - os: osx
-    compiler: gcc
-  - os: osx
-    compiler: clang
 
 before_install:
 
@@ -25,3 +18,11 @@ before_install:
   fi
 
 script: tests/run-all-tests.sh
+
+after_script:
+  # Create lcov report
+  - lcov --capture --directory . --output-file coverage.info
+  - lcov --remove coverage.info */test/* --output-file coverage.info
+  - lcov --list coverage.info
+  # Uploading report to CodeCov
+  - bash <(curl -s https://codecov.io/bash) -f coverage.info || echo "Codecov did not collect coverage reports"
